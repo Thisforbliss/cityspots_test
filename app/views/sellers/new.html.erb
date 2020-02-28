@@ -1,0 +1,34 @@
+
+  <h1> Seller Sign Up Form </h1>
+
+  <% if @seller.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@seller.errors.count, "error") %> prohibited this seller from being saved:</h2>
+ 
+    <ul>
+    <% @seller.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+
+<% end %>
+
+    <div class = "fields_with_errors">
+    <%= form_for (@seller) do |f| %>
+     
+      <%= f.label :email, "What is your email?"%></br>
+      <%= f.email_field :email %> </br><br>
+    
+      <%= f.label :phone_number, "What is your username?"%></br>
+      <%= f.text_field :username %> </br><br>rail
+      
+      
+      <%= f.label :password %> </br>
+      <%= f.password_field :password_digest %> </br><br>
+    
+      <%= f.submit "Seller Sign Up" %>
+    <% end %>
+</div>
+
+

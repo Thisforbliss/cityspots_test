@@ -1,0 +1,29 @@
+<h1> Housing Index </h1>
+
+<% @houses.each.with_index(1)  do |description, index| %>
+        <%=index%>)<strong>Seller Name:</strong> <%= link_to description.seller.username, seller_path(description)%> <br>
+        <strong>Address:</strong>  <%= description.address%> <br>  
+        <strong>City:</strong>  <%= description.city%> <br> 
+        <strong>State:</strong>  <%= description.state%> <br> 
+        <strong>Beds:</strong>  <%= description.beds%> <br> 
+        <strong>Baths:</strong>  <%= description.baths%> <br> 
+        <strong>Price:</strong>  <%= description.price%> <br><br><br>
+<%end%>
+
+<h2> For our Premium Listings </h2>
+
+<% @expensive_houses.each  do |description| %>
+        <strong>Seller Name:</strong> <%= link_to description.seller.username, seller_path(description)%> <br>
+        <strong>Address:</strong>  <%= description.address%> <br>  
+        <strong>City:</strong>  <%= description.city%> <br> 
+        <strong>State:</strong>  <%= description.state%> <br> 
+        <strong>Beds:</strong>  <%= description.beds%> <br> 
+        <strong>Baths:</strong>  <%= description.baths%> <br> 
+        <strong>Price:</strong>  <%= description.price%> <br><br><br>
+<%end%>
+<% if @seller %>
+<h1> Would you like to list a place? </h1>
+<%= link_to "List New House", new_house_path %>
+<% else %>
+" "
+<%end%>
