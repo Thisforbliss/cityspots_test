@@ -1,5 +1,5 @@
 class Buyer < ApplicationRecord
-    #has_secure_password error: cannot load such file -- bcrypt
+    has_secure_password #error: cannot load such file -- bcrypt
     has_many :houses
     has_many :sellers, through: :houses
     validates :first_name, presence: true
@@ -9,5 +9,5 @@ class Buyer < ApplicationRecord
     validates :email, uniqueness: true
     validates :phone_number, presence: true
     validates :phone_number, uniqueness: true
-    attr_accessor :password, :password_confirmation
+    #attr_accessor :password, :password_confirmation
 end

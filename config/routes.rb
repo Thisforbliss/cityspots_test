@@ -2,9 +2,9 @@ Rails.application.routes.draw do
   root  'sessions#home'
   get '/auth/:provider/callback', to: "sessions#fbcreate"
   get '/login',  to: 'sessions#new_seller'
-  get '/login',  to: 'sessions#new_buyer'
+  get '/buyer_login',  to: 'sessions#new_buyer', as: "buyer"
   post '/login', to: 'sessions#create_seller'
-  post '/login', to: 'sessions#create_buyer'
+  post '/login_buyer', to: 'sessions#create_buyer'
   delete '/logout' => 'sessions#destroy'
   get '/signup_buyers', to: 'buyers#new'
   get '/signup_sellers', to:  'sellers#new'

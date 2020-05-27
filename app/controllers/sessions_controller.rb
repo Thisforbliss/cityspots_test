@@ -14,7 +14,19 @@ class SessionsController < ApplicationController
         render :login
     end
 
+    def create_buyer #login buyer action and need to authenticate seller using .authenticate method
+        @buyer = Buyer.find_by(:email => params[:buyer][:email])
+        if @buyer && @buyer.authenticate(params[:buyer][:password])
+             session[:buyer_id] = @buyer.id
+             redirect_to houses_path(@buyer)
+         else
+             flash[:error] = "Sorry, your username or password was incorrect"
+             redirect_to buyer_path
+         end
+     end
+
     def create_seller #login seller action and need to authenticate seller using .authenticate method
+        if @seller
        @seller = Seller.find_by(:email => params[:seller][:email])
        if @seller && @seller.authenticate(params[:seller][:password])
             session[:seller_id] = @seller.id
@@ -23,7 +35,18 @@ class SessionsController < ApplicationController
             flash[:error] = "Sorry, your username or password was incorrect"
             redirect_to login_path
         end
+        else
+            @buyer = Buyer.find_by(:email => params[:buyer][:email])
+            if @buyer && @buyer.authenticate(params[:buyer][:password])
+                 session[:buyer_id] = @buyer.id
+                 redirect_to houses_path(@buyer)
+             else
+                 flash[:error] = "Sorry, your username or password was incorrect"
+                 redirect_to buyer_path
+             end 
     end
+end
+
 
  
     def fbcreate
@@ -61,4 +84,4 @@ class SessionsController < ApplicationController
 
 
 
-#end
+# end
